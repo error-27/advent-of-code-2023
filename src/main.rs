@@ -1,11 +1,16 @@
 use std::io::Result;
 mod day1;
+mod day2;
 
 fn main() -> Result<()> {
-    let content = include_str!("inputs/day1").to_string();
+    let d1_file = include_str!("inputs/day1").to_string();
+    let d2_file = include_str!("inputs/day2").to_string();
 
-    println!("{}", day1::solve(&content));
-    println!("{}", day1::solve2(&content));
+    println!("Day 1-1: {}", day1::solve(&d1_file));
+    println!("Day 1-2: {}", day1::solve2(&d1_file));
+
+    println!("Day 2-1: {}", day2::solve(&d2_file));
+    println!("Day 2-2: {}", day2::solve2(&d2_file));
 
     Ok(())
 }
