@@ -1,4 +1,6 @@
-use std::io::Result;
+use std::io::{Result, ErrorKind, BufReader, prelude::*};
+use std::env;
+use std::fs::File;
 mod day1;
 mod day2;
 mod day3;
@@ -7,28 +9,33 @@ mod day5;
 mod day6;
 
 fn main() -> Result<()> {
-    //let d1_file = include_str!("inputs/day1").to_string();
-    //let d2_file = include_str!("inputs/day2").to_string();
-    //let d3_file = include_str!("inputs/day3").to_string();
-    //let d4_file = include_str!("inputs/day4").to_string();
-    //let d5_file = include_str!("inputs/day5").to_string();
-    let d6_file = include_str!("inputs/day6").to_string();
+    let args: Vec<String> = env::args().collect();
 
-    //println!("Day 1-1: {}", day1::solve(&d1_file));
-    //println!("Day 1-2: {}", day1::solve2(&d1_file));
+    if args.len() < 3 {
+        println!("please choose a day and part");
+        return Err(ErrorKind::Other.into());
+    }
 
-    //println!("Day 2-1: {}", day2::solve(&d2_file));
-    //println!("Day 2-2: {}", day2::solve2(&d2_file));
+    let day = args[1].parse::<u8>().unwrap_or(1);
+    let part2 = args[2].parse::<bool>().unwrap_or(false);
 
-    //println!("Day 3-1: {}", day3::solve(&d3_file));
+    let mut file = File::open(format!("./inputs/day{}", day))?;
+    let mut contents = String::new();
+    file.read_to_string(&mut contents)?;
 
-    //println!("Day 4-1: {}", day4::solve(&d4_file));
-    //println!("Day 4-2: {}", day4::solve2(&d4_file));
+    let solution = match day {
+        1 => if !part2 {day1::solve(&contents)} else {day1::solve2(&contents)},
+        2 => if !part2 {day2::solve(&contents)} else {day2::solve2(&contents)},
+        3 => if !part2 {day3::solve(&contents)} else {day3::solve2(&contents)},
+        4 => if !part2 {day4::solve(&contents)} else {day4::solve2(&contents)},
+        5 => if !part2 {day5::solve(&contents)} else {day5::solve2(&contents)},
+        6 => if !part2 {day6::solve(&contents)} else {day6::solve2(&contents)},
+        _ => 0
+    };
 
-    //println!("Day 5-1: {}", day5::solve(&d5_file));
-
-    println!("Day 6-1: {}", day6::solve(&d6_file));
-    println!("Day 6-2: {}", day6::solve2(&d6_file));
+    println!("Day {}", day);
+    if part2 { println!("Part 2") } else { println!("Part 1") }
+    println!("Solution: {}", solution);
 
     Ok(())
 }

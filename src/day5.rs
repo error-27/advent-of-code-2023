@@ -56,3 +56,7 @@ pub fn solve(input: &String) -> usize {
 
     solution
 }
+
+pub fn solve2(input: &String) -> usize {
+    0
+}
