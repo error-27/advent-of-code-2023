@@ -7,6 +7,7 @@ mod day3;
 mod day4;
 mod day5;
 mod day6;
+mod day7;
 
 fn main() -> Result<()> {
     let args: Vec<String> = env::args().collect();
@@ -30,6 +31,7 @@ fn main() -> Result<()> {
         4 => if !part2 {day4::solve(&contents)} else {day4::solve2(&contents)},
         5 => if !part2 {day5::solve(&contents)} else {day5::solve2(&contents)},
         6 => if !part2 {day6::solve(&contents)} else {day6::solve2(&contents)},
+        7 => if !part2 {day7::solve(&contents)} else {day7::solve2(&contents)},
         _ => 0
     };
 
