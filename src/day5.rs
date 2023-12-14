@@ -1,12 +1,12 @@
 use regex::Regex;
 
-pub fn solve(input: &String) -> usize {
-    let mut solution: usize = 0;
+pub fn solve(input: &String) -> isize {
+    let mut solution: isize = 0;
     let re_nums = Regex::new(r"\d+").unwrap();
 
-    let seeds: Vec<usize> = re_nums.find_iter(
+    let seeds: Vec<isize> = re_nums.find_iter(
         input.lines().collect::<Vec<_>>().first().unwrap())
-        .map(|m| m.as_str().parse::<usize>().unwrap())
+        .map(|m| m.as_str().parse::<isize>().unwrap())
         .collect();
     
     println!("{:?}", seeds);
@@ -21,13 +21,13 @@ pub fn solve(input: &String) -> usize {
         Regex::new(r"humidity-to-location map:\n((\d+ )(\d+ )(\d+)\n)+").unwrap()
     ];
 
-    let mut map_ranges: Vec<Vec<[usize; 3]>> = vec![];
+    let mut map_ranges: Vec<Vec<[isize; 3]>> = vec![];
 
     for r in re_maps {
         let text = r.find(input).unwrap().as_str();
-        let map_nums: Vec<usize> = re_nums.find_iter(text).map(|i| i.as_str().parse::<usize>().unwrap()).collect();
+        let map_nums: Vec<isize> = re_nums.find_iter(text).map(|i| i.as_str().parse::<isize>().unwrap()).collect();
         
-        let mut map: Vec<[usize; 3]> = vec![];
+        let mut map: Vec<[isize; 3]> = vec![];
         for i in 0..map_nums.len()/3 {
             map.push([map_nums[i*3], map_nums[i*3+1], map_nums[i*3+2]]);
         }
@@ -40,8 +40,8 @@ pub fn solve(input: &String) -> usize {
     for seed in seeds {
         let mut value = seed;
         for r in map_ranges.iter() {
-            let src_range: Vec<Vec<usize>> = r.iter().map(|i| (i[1]..i[1]+i[2]).collect()).collect();
-            let dest_range: Vec<Vec<usize>> = r.iter().map(|i| (i[0]..i[0]+i[2]).collect()).collect();
+            let src_range: Vec<Vec<isize>> = r.iter().map(|i| (i[1]..i[1]+i[2]).collect()).collect();
+            let dest_range: Vec<Vec<isize>> = r.iter().map(|i| (i[0]..i[0]+i[2]).collect()).collect();
 
             for i in 0..src_range.len() {
                 if !src_range[i].contains(&value) { continue; }
@@ -57,6 +57,6 @@ pub fn solve(input: &String) -> usize {
     solution
 }
 
-pub fn solve2(input: &String) -> usize {
+pub fn solve2(input: &String) -> isize {
     0
 }

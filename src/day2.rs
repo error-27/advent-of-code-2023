@@ -1,11 +1,11 @@
 use regex::Regex;
 
-pub fn solve(input: &String) -> usize {
+pub fn solve(input: &String) -> isize {
     let red_max = 12;
     let green_max = 13;
     let blue_max = 14;
 
-    let mut possible: usize = 0;
+    let mut possible: isize = 0;
 
     let lines = input.lines();
 
@@ -16,25 +16,25 @@ pub fn solve(input: &String) -> usize {
         let green_re = Regex::new(r"[0-9]+ green").unwrap();
         let numbers_re = Regex::new(r"[0-9]+").unwrap();
 
-        let red_matches: Vec<usize> = red_re.find_iter(line)
+        let red_matches: Vec<isize> = red_re.find_iter(line)
             .map(|s| numbers_re
             .find(s.as_str())
             .unwrap()
-            .as_str().parse::<usize>().unwrap()
+            .as_str().parse::<isize>().unwrap()
         ).collect();
 
-        let blue_matches: Vec<usize> = blue_re.find_iter(line)
+        let blue_matches: Vec<isize> = blue_re.find_iter(line)
             .map(|s| numbers_re
             .find(s.as_str())
             .unwrap()
-            .as_str().parse::<usize>().unwrap()
+            .as_str().parse::<isize>().unwrap()
         ).collect();
 
-        let green_matches: Vec<usize> = green_re.find_iter(line)
+        let green_matches: Vec<isize> = green_re.find_iter(line)
             .map(|s| numbers_re
             .find(s.as_str())
             .unwrap()
-            .as_str().parse::<usize>().unwrap()
+            .as_str().parse::<isize>().unwrap()
         ).collect();
 
         for r in red_matches {
@@ -59,15 +59,15 @@ pub fn solve(input: &String) -> usize {
         }
 
         if !impossible {
-            possible += pos + 1;
+            possible += pos as isize + 1;
         }
     }
 
     possible
 }
 
-pub fn solve2(input: &String) -> usize {
-    let mut power: usize = 0;
+pub fn solve2(input: &String) -> isize {
+    let mut power: isize = 0;
 
     let lines = input.lines();
 
@@ -77,25 +77,25 @@ pub fn solve2(input: &String) -> usize {
         let green_re = Regex::new(r"[0-9]+ green").unwrap();
         let numbers_re = Regex::new(r"[0-9]+").unwrap();
 
-        let red_matches: Vec<usize> = red_re.find_iter(line)
+        let red_matches: Vec<isize> = red_re.find_iter(line)
             .map(|s| numbers_re
             .find(s.as_str())
             .unwrap()
-            .as_str().parse::<usize>().unwrap()
+            .as_str().parse::<isize>().unwrap()
         ).collect();
 
-        let blue_matches: Vec<usize> = blue_re.find_iter(line)
+        let blue_matches: Vec<isize> = blue_re.find_iter(line)
             .map(|s| numbers_re
             .find(s.as_str())
             .unwrap()
-            .as_str().parse::<usize>().unwrap()
+            .as_str().parse::<isize>().unwrap()
         ).collect();
 
-        let green_matches: Vec<usize> = green_re.find_iter(line)
+        let green_matches: Vec<isize> = green_re.find_iter(line)
             .map(|s| numbers_re
             .find(s.as_str())
             .unwrap()
-            .as_str().parse::<usize>().unwrap()
+            .as_str().parse::<isize>().unwrap()
         ).collect();
 
         let mut highest_red = red_matches.first().unwrap().clone();

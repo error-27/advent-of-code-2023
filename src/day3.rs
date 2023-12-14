@@ -3,8 +3,8 @@ use regex::{Regex, Match};
 const WIDTH: usize = 139;
 const HEIGHT: usize = 139;
 
-pub fn solve(input: &String) -> usize {
-    let mut solution: usize = 0;
+pub fn solve(input: &String) -> isize {
+    let mut solution: isize = 0;
 
     let re = Regex::new(r"\d+").unwrap();
     let mut numbers: Vec<Vec<Match>> = Vec::new();
@@ -76,7 +76,7 @@ pub fn solve(input: &String) -> usize {
 
             if counted {
                 println!("verified {}", m.as_str());
-                solution += m.as_str().parse::<usize>().unwrap();
+                solution += m.as_str().parse::<isize>().unwrap();
             }
         }
     }
@@ -84,8 +84,8 @@ pub fn solve(input: &String) -> usize {
     solution
 }
 
-pub fn solve2(input: &String) -> usize {
-    let mut solution: usize = 0;
+pub fn solve2(input: &String) -> isize {
+    let mut solution: isize = 0;
 
     solution
 }

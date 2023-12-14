@@ -1,19 +1,19 @@
-pub fn solve(input: &String) -> usize {
+pub fn solve(input: &String) -> isize {
     let mut solution = 0;
     let cards = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
     
     let mut hands: Vec<String> = vec![];
-    let mut bids: Vec<usize> = vec![];
+    let mut bids: Vec<isize> = vec![];
 
     let lines = input.lines();
 
     for line in lines {
         let s: Vec<&str> = line.split(" ").collect();
         hands.push(s[0].to_string());
-        bids.push(s[1].parse::<usize>().unwrap());
+        bids.push(s[1].parse::<isize>().unwrap());
     }
 
-    let mut ranks: Vec<usize> = vec![];
+    let mut ranks: Vec<isize> = vec![];
 
     for pass in 0..hands.len()-1 {
         
@@ -22,7 +22,7 @@ pub fn solve(input: &String) -> usize {
     solution
 }
 
-pub fn solve2(input: &String) -> usize {
+pub fn solve2(input: &String) -> isize {
     let mut solution = 0;
 
     solution
